@@ -33,7 +33,8 @@ const OrderStatusHeader = ({ order}: Props) => {
     <>
       <h1 className="text-3xl font-bold tracking-tighter flex flex-col gap-5 md:flex-row md:justify-between">
         <span>Order Status: {getOrderStatusInfo().label}</span>
-        {getOrderStatusInfo().label != "Awaiting Payment From Other Members" ? (
+        {((getOrderStatusInfo().label != "Awaiting Payment From Other Members") ||
+        (getOrderStatusInfo().label != "Delivered")) ? (
           <span>Expected by: {getExpectedDelivery()}</span>
         ) : (
           ""
