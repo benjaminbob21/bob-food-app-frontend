@@ -8,7 +8,7 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 const UsernameMenu = () => {
   const { user, logout } = useAuth0();
