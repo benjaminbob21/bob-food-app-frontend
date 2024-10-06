@@ -1,4 +1,4 @@
-import LottieAnimation from "@/components/Load";
+import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -132,7 +132,7 @@ const UserProfileForm = ({
         </div>
 
         {isLoading ? (
-          <LottieAnimation/>
+          <LoadingButton/>
         ) : (
           <Button type="submit" className="bg-purple-500" disabled={!form.formState.isValid}>
             {buttonText}
