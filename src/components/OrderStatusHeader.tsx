@@ -56,21 +56,34 @@ const OrderStatusHeader = ({ order }: Props) => {
   return (
     <div className="space-y-4">
       <h1 className="text-3xl font-bold tracking-tighter flex flex-col gap-5 md:flex-row md:justify-between">
-        <span>Order Status: {getOrderStatusInfo().label}</span>
+        <span>
+          Order Status:{" "}
+          {order.paidParticipants &&
+          getOrderStatusInfo().label === "Awaiting Restaurant Confirmation"
+            ? "Group Order Completed"
+            : getOrderStatusInfo().label}
+        </span>
         {getOrderStatusInfo().label !== "Delivered" &&
-        getOrderStatusInfo().label !== "Awaiting Payment From Other Members" ? (
+        getOrderStatusInfo().label !== "Awaiting Payment From Other Members" && !order.paidParticipants? (
           <span>Expected by: {getExpectedDelivery()}</span>
-        ) : (
-          order.paidParticipants && renderPaymentStatus()
+        ) : (order.paidParticipants)?renderPaymentStatus():(
+          ""
         )}
       </h1>
       <Progress
         className={`h-2 ${
-          getOrderStatusInfo().label === "Delivered"
+          getOrderStatusInfo().label === "Delivered" ||
+          (order.paidParticipants &&
+            getOrderStatusInfo().label === "Awaiting Restaurant Confirmation")
             ? "bg-green-100"
             : "animate-pulse bg-purple-100"
         }`}
-        value={getOrderStatusInfo().progressValue}
+        value={
+          order.paidParticipants &&
+          getOrderStatusInfo().label === "Awaiting Restaurant Confirmation"
+            ? 100
+            : getOrderStatusInfo().progressValue
+        }
       />
     </div>
   );
