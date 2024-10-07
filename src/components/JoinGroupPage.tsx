@@ -1,7 +1,6 @@
 import { useGetLinkAndOrder, useJoinGroupOrder } from "@/api/OrderApi";
 import CheckoutButton from "./CheckoutButton";
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
@@ -12,7 +11,6 @@ import { ChefHat, Clock, DollarSign, MapPin, Users } from "lucide-react";
 import LottieAnimation from "./Load";
 
 const JoinGroupPage = () => {
-  const { user } = useAuth0();
   const { joinGroupOrder, isLoading } = useJoinGroupOrder();
   const { groupOrderId } = useParams(); 
   const [showGroupOrderDialog, setShowGroupOrderDialog] = useState(false);
@@ -53,7 +51,6 @@ const JoinGroupPage = () => {
         country: userFormData.country,
         email: userFormData.email as string,
       },
-      userId: user?.sub,
       groupOrderId: groupOrderId,
     };
 
