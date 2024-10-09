@@ -12,7 +12,7 @@ const Review = () => {
   const { restaurantId } = useParams();
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
-  const { updateReview, isLoading, isSuccess } = useSubmitReview();
+  const { updateReview, isLoading } = useSubmitReview();
   const queryClient = useQueryClient();
 
   const handleSubmit = async(e: React.FormEvent) => {
@@ -30,9 +30,7 @@ const Review = () => {
 
       setRating(0);
       setComment("");
-      if (isSuccess) {
-        toast.success("Review submitted!");
-      }
+      toast.success("Review submitted successfully!");
     } catch (error: any) {
       toast.error(error.message);
     }
