@@ -235,16 +235,16 @@ export const useSubmitReview = () => {
     reset,
   } = useMutation(submitReviewRequest);
 
-  if (isSuccess) {
-    toast.success("Review submitted!");
-  }
+  // if (isSuccess) {
+  //   toast.success("Review submitted!");
+  // }
 
   if (isError && error instanceof Error) {
     toast.error(error.message);
     reset();
   }
 
-  return { updateReview, isLoading, reset };
+  return { updateReview, isLoading, isSuccess, reset };
 }
 
 export const useGetReviews = (restaurantId?: string) => {
