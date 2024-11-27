@@ -15,7 +15,7 @@ type Props = {
   isLoading: boolean;
 };
 
-const CheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
+const GroupCheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
   const {
     isAuthenticated,
     isLoading: isAuthLoading,
@@ -37,17 +37,15 @@ const CheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
   if (!isAuthenticated) {
     return (
       <Button onClick={onLogin} className="bg-purple-500 flex-1">
-        Log in to check out
+        Log in to Initiate Group Order
       </Button>
     );
   }
-
-  if (isLoading || !currentUser) {
+  if (isLoading) {
     return <LoadingButton />;
   }
-
-  if (isAuthLoading) {
-    return <LottieAnimation/>;
+  if (isAuthLoading || !currentUser) {
+    return <LottieAnimation />;
   }
   return (
     <Dialog>
@@ -69,4 +67,4 @@ const CheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
   );
 };
 
-export default CheckoutButton;
+export default GroupCheckoutButton;

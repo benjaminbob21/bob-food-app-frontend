@@ -132,9 +132,9 @@ const UserProfileForm = ({
         </div>
 
         {isLoading ? (
-          <LoadingButton />
+          <LoadingButton/>
         ) : (
-          <Button type="submit" className="bg-purple-500">
+          <Button type="submit" className="bg-purple-500" disabled={!form.formState.isValid}>
             {buttonText}
           </Button>
         )}

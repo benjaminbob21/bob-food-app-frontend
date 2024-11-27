@@ -20,11 +20,24 @@ export type Restaurant = {
   city: string;
   country: string;
   deliveryPrice: number;
+  averageRating: number;
+  totalRating: number;
+  reviewCount: number;
   estimatedDeliveryTime: number;
   cuisines: string[];
   menuItems: MenuItem[];
   imageUrl: string;
   lastUpdated: string;
+};
+
+export type Review = {
+  restaurant: Restaurant;
+  country: string;
+  city: string;
+  name: string;
+  rating: number;
+  comment: string;
+  createdAt: Date;
 };
 
 export type OrderStatus =
@@ -49,6 +62,38 @@ export type Order = {
     city: string;
     email: string;
   };
+  paidParticipants: {
+    email: string;
+    amount: number;
+    user: User;
+  }[];
+  totalAmount: number;
+  status: OrderStatus;
+  createdAt: string;
+  restaurantId: string;
+};
+
+export type GroupOrder = {
+  _id: string;
+  restaurant: Restaurant;
+  user: User;
+  cartItems: {
+    menuItemId: string;
+    name: string;
+    quantity: string;
+  }[];
+  deliveryDetails: {
+    name: string;
+    addressLine1: string;
+    city: string;
+    email: string;
+  };
+  totalParticipants: number;
+  paidParticipants: {
+    email: string;
+    amount: number;
+    user: User;
+  }[];
   totalAmount: number;
   status: OrderStatus;
   createdAt: string;
