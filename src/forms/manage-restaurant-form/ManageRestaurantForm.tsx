@@ -14,23 +14,11 @@ import { Restaurant } from "@/types";
 
 const formSchema = z
   .object({
-    restaurantName: z.string({
-      required_error: "restaurant name is required",
-    }),
-    city: z.string({
-      required_error: "city name is required",
-    }),
-    country: z.string({
-      required_error: "country name is required",
-    }),
-    deliveryPrice: z.coerce.number({
-      required_error: "delivery price is required",
-      invalid_type_error: "must be a valid number",
-    }),
-    estimatedDeliveryTime: z.coerce.number({
-      required_error: "estimated delivery time is required",
-      invalid_type_error: "must be a valid number",
-    }),
+    restaurantName: z.string().min(1, "restaurant name is required"),
+    city: z.string().min(1, "city name is required"),
+    country: z.string().min(1, "country name is required"),
+    deliveryPrice: z.coerce.number().min(0, "delivery price is required"),
+    estimatedDeliveryTime: z.coerce.number().min(0, "estimated delivery time is required"),
     cuisines: z.array(z.string()).nonempty({
       message: "please select at least one item",
     }),
